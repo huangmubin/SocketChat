@@ -12,24 +12,67 @@ class ChatController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        inputview.update_buttons(
+            isCreated: AppData.shared.current.socket != nil,
+            isConneting: AppData.shared.current.isConnecting
+        )
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.estimatedRowHeight = 30
+        }
     }
-    */
+    @IBOutlet weak var inputview: InputView!
+    @IBOutlet weak var layout_inputview_bottom: NSLayoutConstraint!
+    
+}
 
+// MARK: - TableView
+
+extension ChatController: UITableViewDataSource, UITableViewDelegate {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return AppData.shared.current.events.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = AppData.shared.current.events[indexPath.row]
+        switch data.from {
+        case .system:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell0", for: indexPath) as! ChatCell0
+            cell.update(data)
+            return cell
+        case .local:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell1", for: indexPath) as! ChatCell1
+            cell.update(data)
+            return cell
+        case .remote:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell2", for: indexPath) as! ChatCell2
+            cell.update(data)
+            return cell
+        }
+    }
+
+    
+}
+
+// MARK: - Input View
+
+extension ChatController: InputViewDelegate {
+    
+    func inputview(connect_action inputview: InputView) {
+        
+    }
+    
+    func inputview(send_action inputview: InputView) {
+        
+    }
+    
 }

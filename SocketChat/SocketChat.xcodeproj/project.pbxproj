@@ -28,6 +28,12 @@
 		9C0B2FA71EAAE3870030AB3B /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2F7F1EAAE3870030AB3B /* TableView.swift */; };
 		9C0B2FA81EAAE3870030AB3B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2F801EAAE3870030AB3B /* View.swift */; };
 		9C0B2FA91EAAE3870030AB3B /* Layouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2F821EAAE3870030AB3B /* Layouter.swift */; };
+		9C0B2FB61EAAE6F80030AB3B /* SocketModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FB51EAAE6F80030AB3B /* SocketModel.swift */; };
+		9C0B2FB81EAAE8C80030AB3B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */; };
+		9C0B2FBA1EAAE8DD0030AB3B /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */; };
+		9C0B2FBD1EAAF0E50030AB3B /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */; };
+		9C0B2FBF1EAB373B0030AB3B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FBE1EAB373B0030AB3B /* InputView.swift */; };
+		9C0B2FC21EAB5B630030AB3B /* InfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */; };
 		9CC383C21EAAD80C00C406A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC383C11EAAD80C00C406A0 /* AppDelegate.swift */; };
 		9CC383C71EAAD80C00C406A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CC383C51EAAD80C00C406A0 /* Main.storyboard */; };
 		9CC383C91EAAD80C00C406A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CC383C81EAAD80C00C406A0 /* Assets.xcassets */; };
@@ -65,6 +71,13 @@
 		9C0B2F801EAAE3870030AB3B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		9C0B2F821EAAE3870030AB3B /* Layouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layouter.swift; sourceTree = "<group>"; };
 		9C0B2F831EAAE3870030AB3B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9C0B2FB41EAAE6460030AB3B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9C0B2FB51EAAE6F80030AB3B /* SocketModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketModel.swift; sourceTree = "<group>"; };
+		9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		9C0B2FBE1EAB373B0030AB3B /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoInputView.swift; sourceTree = "<group>"; };
 		9CC383BE1EAAD80C00C406A0 /* SocketChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CC383C11EAAD80C00C406A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CC383C61EAAD80C00C406A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,10 +104,10 @@
 		9C0B2F4C1EAAE3870030AB3B /* ToolBox */ = {
 			isa = PBXGroup;
 			children = (
+				9C0B2F5F1EAAE3870030AB3B /* README.md */,
 				9C0B2F4E1EAAE3870030AB3B /* Extension */,
 				9C0B2F541EAAE3870030AB3B /* Network */,
 				9C0B2F5B1EAAE3870030AB3B /* Protocols */,
-				9C0B2F5F1EAAE3870030AB3B /* README.md */,
 				9C0B2F761EAAE3870030AB3B /* Tools */,
 				9C0B2F791EAAE3870030AB3B /* UIKit */,
 				9C0B2F811EAAE3870030AB3B /* UITools */,
@@ -173,6 +186,7 @@
 		9CC383B51EAAD80C00C406A0 = {
 			isa = PBXGroup;
 			children = (
+				9C0B2FB41EAAE6460030AB3B /* README.md */,
 				9CC383C01EAAD80C00C406A0 /* SocketChat */,
 				9CC383BF1EAAD80C00C406A0 /* Products */,
 			);
@@ -192,8 +206,8 @@
 				9CC383D31EAAD82000C406A0 /* App Resource */,
 				9CC383D51EAAD8E900C406A0 /* Library */,
 				9CC383D41EAAD8E900C406A0 /* Controller */,
-				9CC383D81EAAD8E900C406A0 /* Model */,
 				9CC383D91EAAD8E900C406A0 /* View */,
+				9CC383D81EAAD8E900C406A0 /* Model */,
 			);
 			path = SocketChat;
 			sourceTree = "<group>";
@@ -232,6 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				9CC383E21EAAE13200C406A0 /* AppData.swift */,
+				9C0B2FB51EAAE6F80030AB3B /* SocketModel.swift */,
+				9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,6 +255,10 @@
 		9CC383D91EAAD8E900C406A0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */,
+				9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */,
+				9C0B2FBE1EAB373B0030AB3B /* InputView.swift */,
+				9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,6 +295,7 @@
 				TargetAttributes = {
 					9CC383BD1EAAD80C00C406A0 = {
 						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = 9X2EVZ736U;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -316,8 +337,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C0B2F8F1EAAE3870030AB3B /* Socket.swift in Sources */,
+				9C0B2FBF1EAB373B0030AB3B /* InputView.swift in Sources */,
 				9C0B2F911EAAE3870030AB3B /* QueueProtocol.swift in Sources */,
+				9C0B2FBD1EAAF0E50030AB3B /* EventModel.swift in Sources */,
 				9C0B2F8E1EAAE3870030AB3B /* Socket.c in Sources */,
+				9C0B2FC21EAB5B630030AB3B /* InfoInputView.swift in Sources */,
 				9CC383C21EAAD80C00C406A0 /* AppDelegate.swift in Sources */,
 				9C0B2FA11EAAE3870030AB3B /* ToolBox.swift in Sources */,
 				9CC383DF1EAAD96500C406A0 /* ChatController.swift in Sources */,
@@ -326,11 +350,14 @@
 				9C0B2FA81EAAE3870030AB3B /* View.swift in Sources */,
 				9C0B2F8B1EAAE3870030AB3B /* Network.swift in Sources */,
 				9C0B2FA61EAAE3870030AB3B /* ImageView.swift in Sources */,
+				9C0B2FB61EAAE6F80030AB3B /* SocketModel.swift in Sources */,
 				9CC383DD1EAAD94A00C406A0 /* ListController.swift in Sources */,
 				9C0B2FA91EAAE3870030AB3B /* Layouter.swift in Sources */,
+				9C0B2FBA1EAAE8DD0030AB3B /* ChatCell.swift in Sources */,
 				9C0B2F851EAAE3870030AB3B /* Extension_Array.swift in Sources */,
 				9C0B2F881EAAE3870030AB3B /* Extension_UIColor.swift in Sources */,
 				9C0B2F8A1EAAE3870030AB3B /* Json.swift in Sources */,
+				9C0B2FB81EAAE8C80030AB3B /* ListCell.swift in Sources */,
 				9C0B2F871EAAE3870030AB3B /* Extension_String.swift in Sources */,
 				9C0B2F901EAAE3870030AB3B /* NotifierProtocol.swift in Sources */,
 				9C0B2FA51EAAE3870030AB3B /* HintView.swift in Sources */,
@@ -465,7 +492,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9X2EVZ736U;
 				INFOPLIST_FILE = SocketChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myron.SocketChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,7 +506,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9X2EVZ736U;
 				INFOPLIST_FILE = SocketChat/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = myron.SocketChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -11,9 +11,11 @@ import UIKit
 class ListCell: UITableViewCell {
 
     @IBOutlet weak var id_label: UILabel!
+    @IBOutlet weak var type_label: UILabel!
     
     func update(_ value: SocketModel) {
         id_label.text = value.id
+        type_label.text = value.type.toString()
     }
     
 }

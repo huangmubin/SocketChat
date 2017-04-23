@@ -446,7 +446,7 @@ size_t socket_read_t(int socket, void * buffer, size_t size, int sec, int usec) 
     size_t r_size = read(socket, buffer, size);
     if (r_size == -1) {
         perror("read error");
-        return ERROR_WRITE;
+        return ERROR_READ;
     }
     else {
         return r_size;
@@ -478,7 +478,7 @@ size_t socket_recv_t(int socket, void * buffer, size_t size, int sec, int usec) 
     size_t r_size = recv(socket, buffer, size, 0);
     if (r_size == -1) {
         perror("read error");
-        return ERROR_WRITE;
+        return ERROR_READ;
     }
     else {
         return r_size;
@@ -512,7 +512,7 @@ size_t socket_recvfrom_t(int socket, void * buffer, size_t size, char * fromAddr
     size_t r_size = recvfrom(socket, buffer, size, 0, (struct sockaddr *)&address, &port);
     if (r_size == -1) {
         perror("read error");
-        return ERROR_WRITE;
+        return ERROR_READ;
     }
     else {
         memcpy(fromAddress, inet_ntoa(address.sin_addr), strlen(inet_ntoa(address.sin_addr)));

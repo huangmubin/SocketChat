@@ -11,10 +11,14 @@ import UIKit
 class ChatCell: UITableViewCell {
 
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     func update(_ value: EventModel) {
-        messageLabel.text = value.toString()
+        messageLabel.text = value.message_note()
         messageLabel.sizeToFit()
+        
+        nameLabel?.text = value.message_ip()
+        nameLabel?.sizeToFit()
     }
 
 }

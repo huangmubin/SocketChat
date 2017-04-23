@@ -12,6 +12,12 @@ class ListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.contentInset.top = 4
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -34,10 +40,19 @@ class ListController: UITableViewController {
         AppData.shared.current = AppData.shared.datas[indexPath.row]
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            AppData.shared.datas.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     // MARK: - Add
     
     @IBAction func addAction(_ sender: UIBarButtonItem) {
         let socket = SocketModel()
+        socket.address = Socket.host()
+        socket.port = 1234
         AppData.shared.datas.append(socket)
         tableView.reloadData()
     }

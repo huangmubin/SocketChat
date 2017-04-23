@@ -15,4 +15,14 @@ class SocketModel: Socket {
     
     var isConnecting = false
     
+    var remote: Socket?
+    
+    func event() -> EventModel {
+        let event = EventModel()
+        event.address = address
+        event.port = port
+        return event
+    }
+    
+    
 }

@@ -38,7 +38,20 @@ extension String {
         return self[self.index(self.startIndex, offsetBy: range.lowerBound) ..< self.index(self.startIndex, offsetBy: range.upperBound)]
     }
 
-//    func sub(string: String, range: Range<Int>) -> String {
-//        return string[string.index(string.startIndex, offsetBy: range.lowerBound) ..< string.index(string.startIndex, offsetBy: range.upperBound)]
-//    }
+    // MARK: - Regular Expression
+    
+    /**
+     Return if is match
+     // ip 地址: "^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}$"
+     - parameter pattern: regular expression pattern
+     - returns: is or not
+     */
+    func match(pattern: String) -> Bool {
+        if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+            let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
+            return matches.count == 1
+        }
+        return false
+    }
+    
 }

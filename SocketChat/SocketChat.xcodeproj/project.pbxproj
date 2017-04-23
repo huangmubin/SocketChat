@@ -13,6 +13,7 @@
 		9C0B2FBD1EAAF0E50030AB3B /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */; };
 		9C0B2FBF1EAB373B0030AB3B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FBE1EAB373B0030AB3B /* InputView.swift */; };
 		9C0B2FC21EAB5B630030AB3B /* InfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */; };
+		9C587CD91EACAAC6002F52BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C587CDB1EACAAC6002F52BD /* InfoPlist.strings */; };
 		9CC383C21EAAD80C00C406A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC383C11EAAD80C00C406A0 /* AppDelegate.swift */; };
 		9CC383C71EAAD80C00C406A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CC383C51EAAD80C00C406A0 /* Main.storyboard */; };
 		9CC383C91EAAD80C00C406A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CC383C81EAAD80C00C406A0 /* Assets.xcassets */; };
@@ -52,6 +53,9 @@
 		9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		9C0B2FBE1EAB373B0030AB3B /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoInputView.swift; sourceTree = "<group>"; };
+		9C587CD61EACA95F002F52BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		9C587CDA1EACAAC6002F52BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9C587CDC1EACAAC9002F52BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9CC383BE1EAAD80C00C406A0 /* SocketChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CC383C11EAAD80C00C406A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9CC383C61EAAD80C00C406A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				9CC383C81EAAD80C00C406A0 /* Assets.xcassets */,
 				9CC383CA1EAAD80C00C406A0 /* LaunchScreen.storyboard */,
 				9CC383CD1EAAD80C00C406A0 /* Info.plist */,
+				9C587CDB1EACAAC6002F52BD /* InfoPlist.strings */,
 			);
 			name = "App Resource";
 			sourceTree = "<group>";
@@ -285,7 +290,7 @@
 				TargetAttributes = {
 					9CC383BD1EAAD80C00C406A0 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 9X2EVZ736U;
+						DevelopmentTeam = 2KGH4RWYPW;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -297,6 +302,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 9CC383B51EAAD80C00C406A0;
 			productRefGroup = 9CC383BF1EAAD80C00C406A0 /* Products */;
@@ -314,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CC383CC1EAAD80C00C406A0 /* LaunchScreen.storyboard in Resources */,
+				9C587CD91EACAAC6002F52BD /* InfoPlist.strings in Resources */,
 				9CC383C91EAAD80C00C406A0 /* Assets.xcassets in Resources */,
 				9CC383C71EAAD80C00C406A0 /* Main.storyboard in Resources */,
 			);
@@ -364,10 +371,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		9C587CDB1EACAAC6002F52BD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9C587CDA1EACAAC6002F52BD /* Base */,
+				9C587CDC1EACAAC9002F52BD /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		9CC383C51EAAD80C00C406A0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9CC383C61EAAD80C00C406A0 /* Base */,
+				9C587CD61EACA95F002F52BD /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -387,6 +404,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -438,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -482,7 +501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9X2EVZ736U;
+				DEVELOPMENT_TEAM = 2KGH4RWYPW;
 				INFOPLIST_FILE = SocketChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -496,7 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9X2EVZ736U;
+				DEVELOPMENT_TEAM = 2KGH4RWYPW;
 				INFOPLIST_FILE = SocketChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

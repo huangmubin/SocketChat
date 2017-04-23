@@ -75,8 +75,8 @@ extension Socket {
 
 extension Socket {
     
-    enum SocketType {
-        case tcp_server
+    enum SocketType: Int {
+        case tcp_server = 0
         case tcp_client
         case udp_server
         case udp_client
@@ -93,6 +93,21 @@ extension Socket {
                 return "UDP Client"
             }
         }
+        
+        func toInt() -> Int {
+            return self.rawValue
+//            switch self {
+//            case .tcp_server:
+//                return 0
+//            case .tcp_client:
+//                return 1
+//            case .udp_server:
+//                return 2
+//            case .udp_client:
+//                return 3
+//            }
+        }
+        
     }
     
 }
@@ -175,6 +190,7 @@ class Socket {
         self.address = String(cString: c_socket_host_address())
         self.port    = port
         self.type    = .udp_client
+        
     }
     
 }

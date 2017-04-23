@@ -36,16 +36,28 @@ class EventModel {
     var address: String = ""
     var port: Int32 = 0
     
-    func toString() -> String {
+    func message_ip() -> String {
         switch from {
         case .system:
-            return note
+            return ""
         default:
+            return "\(address) : \(port)"
+        }
+    }
+    
+    func message_note() -> String {
+        if isNote {
+            return note
+        }
+        else {
             var s = ""
             for d in data {
                 s += "\(d),"
             }
-            return "\(address):\(port)\n[\(s)]"
+            if s.characters.count > 1 {
+                s.remove(at: s.index(before: s.endIndex))
+            }
+            return "[\(s)]"
         }
     }
     
@@ -55,5 +67,11 @@ class EventModel {
         note = "Create Socket"
     }
     
+    func copy() -> EventModel {
+        let new = EventModel()
+        new.address = address
+        new.port = port
+        return new
+    }
     
 }

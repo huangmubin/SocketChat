@@ -509,14 +509,18 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwX-pr-t9t">
                                         <rect key="frame" x="319" y="5" width="48" height="30"/>
-                                        <state key="normal" title="OK"/>
+                                        <state key="normal" title="OK">
+                                            <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="send_action:" destination="NeR-Et-5uR" eventType="touchUpInside" id="PdT-W5-7Po"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tZs-du-jqc">
                                         <rect key="frame" x="8" y="5" width="48" height="30"/>
-                                        <state key="normal" title="Cancel"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="cancel_action:" destination="NeR-Et-5uR" eventType="touchUpInside" id="XXr-F3-V9X"/>
                                         </connections>

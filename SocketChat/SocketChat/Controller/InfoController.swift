@@ -35,11 +35,11 @@ class InfoController: UIViewController, InfoInputViewDelegate, NotifierProtocol 
             server_address_button.setTitle(data.address, for: .normal)
             server_port_button.setTitle("\(data.port)", for: .normal)
             client_address_button.setTitle(
-                data.remote?.address ?? "Address",
+                data.remote?.address.isEmpty == false ? data.remote!.address : "Address",
                 for: .normal
             )
             client_port_button.setTitle(
-                data.remote == nil ? "Port" : "\(data.remote!.port)",
+                data.remote == nil ? "Port" : (data.remote!.port != 0 ? "\(data.remote!.port)" : "Port"),
                 for: .normal
             )
             
@@ -143,8 +143,11 @@ class InfoController: UIViewController, InfoInputViewDelegate, NotifierProtocol 
     func keyboard_notification(notify: Notification) {
         if let rect = notify.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
             var height = self.view.bounds.height - rect.cgRectValue.origin.y
-            if height == 0 {
+            if height == -64 {
                 height = -inputview.bounds.height
+            }
+            else {
+                height += 64
             }
             UIView.animate(withDuration: 0.25, animations: {
                 self.layout_inputview_bottom.constant = height

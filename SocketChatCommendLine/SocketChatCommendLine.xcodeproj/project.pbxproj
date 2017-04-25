@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9C587CEA1EACCC50002F52BD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C587CE91EACCC50002F52BD /* main.swift */; };
+		9C587CF31EACCC8B002F52BD /* Socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C587CF11EACCC8B002F52BD /* Socket.c */; };
+		9C587CF41EACCC8B002F52BD /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C587CF21EACCC8B002F52BD /* Socket.swift */; };
+		9C587CF61EACCDE3002F52BD /* OrderInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C587CF51EACCDE3002F52BD /* OrderInput.swift */; };
+		9C587CF81EACCE19002F52BD /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C587CF71EACCE19002F52BD /* AppModel.swift */; };
+		9C587CFB1EACD8AA002F52BD /* Extension_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C587CFA1EACD8AA002F52BD /* Extension_String.swift */; };
+		9C78BE701EAE24E20092EE17 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C78BE6F1EAE24E20092EE17 /* App.swift */; };
+		9C78BE721EAE24EB0092EE17 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C78BE711EAE24EB0092EE17 /* Model.swift */; };
+		9C78BE741EAE24F60092EE17 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C78BE731EAE24F60092EE17 /* Input.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9C587CE41EACCC50002F52BD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9C587CE61EACCC50002F52BD /* SocketChatCommendLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SocketChatCommendLine; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C587CE91EACCC50002F52BD /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		9C587CF01EACCC8B002F52BD /* SocketChatCommendLine-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SocketChatCommendLine-Bridging-Header.h"; sourceTree = "<group>"; };
+		9C587CF11EACCC8B002F52BD /* Socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Socket.c; sourceTree = "<group>"; };
+		9C587CF21EACCC8B002F52BD /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		9C587CF51EACCDE3002F52BD /* OrderInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInput.swift; sourceTree = "<group>"; };
+		9C587CF71EACCE19002F52BD /* AppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		9C587CFA1EACD8AA002F52BD /* Extension_String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension_String.swift; sourceTree = "<group>"; };
+		9C78BE6F1EAE24E20092EE17 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		9C78BE711EAE24EB0092EE17 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		9C78BE731EAE24F60092EE17 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9C587CE31EACCC50002F52BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9C587CDD1EACCC50002F52BD = {
+			isa = PBXGroup;
+			children = (
+				9C587CE81EACCC50002F52BD /* SocketChatCommendLine */,
+				9C587CE71EACCC50002F52BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9C587CE71EACCC50002F52BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9C587CE61EACCC50002F52BD /* SocketChatCommendLine */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9C587CE81EACCC50002F52BD /* SocketChatCommendLine */ = {
+			isa = PBXGroup;
+			children = (
+				9C587CE91EACCC50002F52BD /* main.swift */,
+				9C78BE6F1EAE24E20092EE17 /* App.swift */,
+				9C78BE711EAE24EB0092EE17 /* Model.swift */,
+				9C78BE731EAE24F60092EE17 /* Input.swift */,
+				9C587CF51EACCDE3002F52BD /* OrderInput.swift */,
+				9C587CF71EACCE19002F52BD /* AppModel.swift */,
+				9C587CF91EACCE1C002F52BD /* Library */,
+				9C587CF01EACCC8B002F52BD /* SocketChatCommendLine-Bridging-Header.h */,
+			);
+			path = SocketChatCommendLine;
+			sourceTree = "<group>";
+		};
+		9C587CF91EACCE1C002F52BD /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				9C587CFA1EACD8AA002F52BD /* Extension_String.swift */,
+				9C587CF11EACCC8B002F52BD /* Socket.c */,
+				9C587CF21EACCC8B002F52BD /* Socket.swift */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9C587CE51EACCC50002F52BD /* SocketChatCommendLine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9C587CED1EACCC50002F52BD /* Build configuration list for PBXNativeTarget "SocketChatCommendLine" */;
+			buildPhases = (
+				9C587CE21EACCC50002F52BD /* Sources */,
+				9C587CE31EACCC50002F52BD /* Frameworks */,
+				9C587CE41EACCC50002F52BD /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SocketChatCommendLine;
+			productName = SocketChatCommendLine;
+			productReference = 9C587CE61EACCC50002F52BD /* SocketChatCommendLine */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C587CDE1EACCC50002F52BD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = myron;
+				TargetAttributes = {
+					9C587CE51EACCC50002F52BD = {
+						CreatedOnToolsVersion = 8.3.1;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9C587CE11EACCC50002F52BD /* Build configuration list for PBXProject "SocketChatCommendLine" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9C587CDD1EACCC50002F52BD;
+			productRefGroup = 9C587CE71EACCC50002F52BD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9C587CE51EACCC50002F52BD /* SocketChatCommendLine */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9C587CE21EACCC50002F52BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C587CF31EACCC8B002F52BD /* Socket.c in Sources */,
+				9C587CEA1EACCC50002F52BD /* main.swift in Sources */,
+				9C587CFB1EACD8AA002F52BD /* Extension_String.swift in Sources */,
+				9C587CF41EACCC8B002F52BD /* Socket.swift in Sources */,
+				9C587CF81EACCE19002F52BD /* AppModel.swift in Sources */,
+				9C78BE701EAE24E20092EE17 /* App.swift in Sources */,
+				9C78BE741EAE24F60092EE17 /* Input.swift in Sources */,
+				9C587CF61EACCDE3002F52BD /* OrderInput.swift in Sources */,
+				9C78BE721EAE24EB0092EE17 /* Model.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9C587CEB1EACCC50002F52BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9C587CEC1EACCC50002F52BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9C587CEE1EACCC50002F52BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SocketChatCommendLine/SocketChatCommendLine-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		9C587CEF1EACCC50002F52BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SocketChatCommendLine/SocketChatCommendLine-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9C587CE11EACCC50002F52BD /* Build configuration list for PBXProject "SocketChatCommendLine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C587CEB1EACCC50002F52BD /* Debug */,
+				9C587CEC1EACCC50002F52BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9C587CED1EACCC50002F52BD /* Build configuration list for PBXNativeTarget "SocketChatCommendLine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9C587CEE1EACCC50002F52BD /* Debug */,
+				9C587CEF1EACCC50002F52BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C587CDE1EACCC50002F52BD /* Project object */;
+}

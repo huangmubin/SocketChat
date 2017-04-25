@@ -8,11 +8,14 @@
 
 import Foundation
 
+/*
+/Users/myron/Library/Developer/Xcode/DerivedData/SocketChatCommendLine-finjcgacxmmbvzbqdobamkwmksma/Build/Products/Debug/SocketChatCommendLine 
+ */
+
 print("========== Welcome! ==========")
 print("The Socket Chat (Mac OS) is start!")
 print("This is the version 1.0.")
 print("==============================")
 
+app.run(model: model)
 
-app.connect(model)
-app.loop(model)

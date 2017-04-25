@@ -69,20 +69,10 @@ func user_address_info(type: SocketInfo, model: Model) {
 }
 
 private func user_tcp_server(_ model: Model) {
-    var port: Int32?
-    while port == nil {
-        print("Please input the tcp server port 0 ~ 65535 :")
-        if var input = String(data: FileHandle.standardInput.availableData, encoding: String.Encoding.ascii) {
-            input.remove(at: input.index(before: input.endIndex))
-            if let p = Int32(input) {
-                if p < 65535 {
-                    port = p
-                }
-            }
-        }
-    }
+    print("Please input the tcp server's info.")
+    let port: Int32 = user_port()
     model.local.address = Socket.host()
-    model.local.port    = port!
+    model.local.port    = port
 }
 
 private func user_tcp_client(_ model: Model) {
@@ -95,11 +85,24 @@ private func user_tcp_client(_ model: Model) {
 }
 
 private func user_udp_server(_ model: Model) {
-    
+    print("Please input the udp server's info.")
+    let port: Int32 = user_port()
+    model.local.address = Socket.host()
+    model.local.port = port
+    print("Please input the default remote address'info. (255.255.255.255:xxxx)")
+    let infos = user_address_port()
+    model.remote.address = infos.0
+    model.remote.port = infos.1
 }
 
 private func user_udp_client(_ model: Model) {
+    print("Please input the udp client's default remote address'info. (255.255.255.255:xxxx).")
+    let infos = user_address_port()
+    model.remote.address = infos.0
+    model.remote.port = infos.1
     
+    model.local.address = Socket.host()
+    model.local.port = 0
 }
 
 // MARK: - Input Address and Port
@@ -126,6 +129,22 @@ func user_address_port() -> (String, Int32) {
     return (address!, port)
 }
 
+func user_port() -> Int32 {
+    var port: Int32?
+    while port == nil {
+        print("Please input the port 0 ~ 65535 :")
+        if var input = String(data: FileHandle.standardInput.availableData, encoding: String.Encoding.ascii) {
+            input.remove(at: input.index(before: input.endIndex))
+            if let p = Int32(input) {
+                if p < 65535 {
+                    port = p
+                }
+            }
+        }
+    }
+    return port!
+}
+
 // MARK: - Input Model : Type
 
 enum DataType {
@@ -148,6 +167,7 @@ enum ReadType {
 
 enum CloseType {
     case socket
+    case app
 }
 
 enum InputType {
@@ -156,29 +176,35 @@ enum InputType {
     case close(CloseType)
 }
 
+func user_input_type_prompt() {
+    print("The order type is")
+    print("    Read data")
+    print("        read text             : r")
+    print("        read decimal data     : r10")
+    print("        read hexadecimal data : r16")
+    print("    Send data")
+    print("        send data in line     : s")
+    print("        send data in block    : sb")
+    print("        send decimal data     : s10")
+    print("        send hexadecimal data : s16")
+    print("    Send Address and data (Just udp)")
+    print("        send data in line     : as")
+    print("        send data in block    : as")
+    print("        send decimal data     : as10")
+    print("        send hexadecimal data : as16")
+    print("    Close")
+    print("        close socket          : c")
+    print("        close socket          : exit")
+}
+
 func user_input_type() -> InputType  {
     var type: InputType?
     while type == nil {
-        print("The order type is")
-        print("    Read data")
-        print("        read text             : r")
-        print("        read decimal data     : r10")
-        print("        read hexadecimal data : r16")
-        print("    Send data")
-        print("        send data in line     : s")
-        print("        send data in block    : sb")
-        print("        send decimal data     : s10")
-        print("        send hexadecimal data : s16")
-        print("    Send Address and data (Just udp)")
-        print("        send data in line     : as")
-        print("        send data in block    : as")
-        print("        send decimal data     : as10")
-        print("        send hexadecimal data : as16")
-        print("    Close")
-        print("        close socket          : c")
-        print("Please input :")
+        print("Please input order type (help):")
         if let input = String(data: FileHandle.standardInput.availableData, encoding: String.Encoding.ascii) {
             switch input {
+            case "help\n":
+                user_input_type_prompt()
             case "r\n":
                 type = InputType.read(.string)
             case "r10\n":
@@ -203,6 +229,8 @@ func user_input_type() -> InputType  {
                 type = InputType.send(.address(.int_16))
             case "c\n":
                 type = InputType.close(.socket)
+            case "exit\n":
+                type = InputType.close(.app)
             default:
                 break
             }
@@ -237,9 +265,9 @@ func user_input_data(_ type: DataType) -> [UInt8] {
                     last = c_input
                 }
             }
-            if inputs.characters.count > 0 {
-                inputs.remove(at: inputs.index(before: inputs.endIndex))
-            }
+        }
+        if inputs.characters.count > 0 {
+            inputs.remove(at: inputs.index(before: inputs.endIndex))
         }
         data = inputs.utf8.map({ return $0 })
     case .int_10:
@@ -276,7 +304,7 @@ func user_input_data(_ type: DataType) -> [UInt8] {
                     break input_loop
                 }
                 c_input.remove(at: c_input.index(before: c_input.endIndex))
-                if c_input.match(pattern: "^(\\d{1,3},?)+$") {
+                if c_input.match(pattern: "^([\\d,a-f]{1,2},?)+$") {
                     let i_array = c_input.components(separatedBy: ",")
                     for i_text in i_array {
                         if let i = UInt8(i_text, radix: 16) {
@@ -286,6 +314,9 @@ func user_input_data(_ type: DataType) -> [UInt8] {
                             print("\(i_text) is not a UInt8")
                         }
                     }
+                }
+                else {
+                    print("The \(c_input) is a unvalid input.")
                 }
             }
         }

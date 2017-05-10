@@ -10,12 +10,36 @@ import UIKit
 
 class ListCell: UITableViewCell {
 
-    @IBOutlet weak var id_label: UILabel!
-    @IBOutlet weak var type_label: UILabel!
+    @IBOutlet weak var local_info: UILabel!
+    @IBOutlet weak var remote_info: UILabel!
+    @IBOutlet weak var type_image: UIImageView!
     
     func update(_ value: SocketModel) {
-        id_label.text = value.id
-        type_label.text = value.type.toString()
+        local_info.text = "\(value.local.address) : \(value.local.port)"
+        remote_info.text = "\(value.remote.address) : \(value.remote.port)"
+        switch value.type {
+        case .server:
+            if value.local.socket == nil {
+                type_image.image = UIImage(named: "type_server_close")
+            }
+            else {
+                type_image.image = UIImage(named: "type_server_open")
+            }
+        case .client:
+            if value.remote.socket == nil {
+                type_image.image = UIImage(named: "type_client_close")
+            }
+            else {
+                type_image.image = UIImage(named: "type_client_open")
+            }
+        case .udp:
+            if value.local.socket == nil {
+                type_image.image = UIImage(named: "type_udp_close")
+            }
+            else {
+                type_image.image = UIImage(named: "type_udp_open")
+            }
+        }
     }
     
 }

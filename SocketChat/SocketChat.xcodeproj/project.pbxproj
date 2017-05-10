@@ -11,8 +11,6 @@
 		9C0B2FB81EAAE8C80030AB3B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */; };
 		9C0B2FBA1EAAE8DD0030AB3B /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */; };
 		9C0B2FBD1EAAF0E50030AB3B /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */; };
-		9C0B2FBF1EAB373B0030AB3B /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FBE1EAB373B0030AB3B /* InputView.swift */; };
-		9C0B2FC21EAB5B630030AB3B /* InfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */; };
 		9C587CD91EACAAC6002F52BD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C587CDB1EACAAC6002F52BD /* InfoPlist.strings */; };
 		9CC383C21EAAD80C00C406A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC383C11EAAD80C00C406A0 /* AppDelegate.swift */; };
 		9CC383C71EAAD80C00C406A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CC383C51EAAD80C00C406A0 /* Main.storyboard */; };
@@ -43,6 +41,9 @@
 		9CC385011EAB97ED00C406A0 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC384EB1EAB97ED00C406A0 /* TableView.swift */; };
 		9CC385021EAB97ED00C406A0 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC384EC1EAB97ED00C406A0 /* View.swift */; };
 		9CC385031EAB97ED00C406A0 /* Layouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC384EE1EAB97ED00C406A0 /* Layouter.swift */; };
+		9CCFD11F1EBE0BB90026B96B /* SocketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFD11E1EBE0BB90026B96B /* SocketInfoView.swift */; };
+		9CCFD1211EBEABBC0026B96B /* AddressInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFD1201EBEABBC0026B96B /* AddressInputView.swift */; };
+		9CCFD1231EBF15480026B96B /* MessageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCFD1221EBF15480026B96B /* MessageEditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +52,6 @@
 		9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		9C0B2FBC1EAAF0E50030AB3B /* EventModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
-		9C0B2FBE1EAB373B0030AB3B /* InputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoInputView.swift; sourceTree = "<group>"; };
-		9C587CD61EACA95F002F52BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		9C587CDA1EACAAC6002F52BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C587CDC1EACAAC9002F52BD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9CC383BE1EAAD80C00C406A0 /* SocketChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocketChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +85,9 @@
 		9CC384EB1EAB97ED00C406A0 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		9CC384EC1EAB97ED00C406A0 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		9CC384EE1EAB97ED00C406A0 /* Layouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layouter.swift; sourceTree = "<group>"; };
+		9CCFD11E1EBE0BB90026B96B /* SocketInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketInfoView.swift; sourceTree = "<group>"; };
+		9CCFD1201EBEABBC0026B96B /* AddressInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressInputView.swift; sourceTree = "<group>"; };
+		9CCFD1221EBF15480026B96B /* MessageEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,10 +174,11 @@
 		9CC383D91EAAD8E900C406A0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9CCFD1221EBF15480026B96B /* MessageEditView.swift */,
+				9CCFD1201EBEABBC0026B96B /* AddressInputView.swift */,
 				9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */,
 				9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */,
-				9C0B2FBE1EAB373B0030AB3B /* InputView.swift */,
-				9C0B2FC11EAB5B630030AB3B /* InfoInputView.swift */,
+				9CCFD11E1EBE0BB90026B96B /* SocketInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,16 +335,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C0B2FBF1EAB373B0030AB3B /* InputView.swift in Sources */,
 				9CC385011EAB97ED00C406A0 /* TableView.swift in Sources */,
 				9C0B2FBD1EAAF0E50030AB3B /* EventModel.swift in Sources */,
-				9C0B2FC21EAB5B630030AB3B /* InfoInputView.swift in Sources */,
+				9CCFD1211EBEABBC0026B96B /* AddressInputView.swift in Sources */,
 				9CC384FE1EAB97ED00C406A0 /* HintStatusBar.swift in Sources */,
 				9CC384FC1EAB97ED00C406A0 /* Alert.swift in Sources */,
 				9CC384F51EAB97ED00C406A0 /* SessionDelegate.swift in Sources */,
 				9CC384F81EAB97ED00C406A0 /* NotifierProtocol.swift in Sources */,
+				9CCFD1231EBF15480026B96B /* MessageEditView.swift in Sources */,
 				9CC384EF1EAB97ED00C406A0 /* Extension_Array.swift in Sources */,
 				9CC384F01EAB97ED00C406A0 /* Extension_CGRect.swift in Sources */,
+				9CCFD11F1EBE0BB90026B96B /* SocketInfoView.swift in Sources */,
 				9CC383C21EAAD80C00C406A0 /* AppDelegate.swift in Sources */,
 				9CC383DF1EAAD96500C406A0 /* ChatController.swift in Sources */,
 				9CC384FF1EAB97ED00C406A0 /* HintView.swift in Sources */,
@@ -384,7 +387,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				9CC383C61EAAD80C00C406A0 /* Base */,
-				9C587CD61EACA95F002F52BD /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

@@ -31,7 +31,7 @@ class ListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SocketCell", for: indexPath) as! ListCell
         cell.update(AppData.shared.datas[indexPath.row])
         return cell
     }
@@ -50,10 +50,12 @@ class ListController: UITableViewController {
     // MARK: - Add
     
     @IBAction func addAction(_ sender: UIBarButtonItem) {
-        let socket = SocketModel()
-        socket.address = Socket.host()
-        socket.port = 1234
-        AppData.shared.datas.append(socket)
+        let model = SocketModel()
+        model.local.address = Socket.host()
+        model.local.port = 1234
+        model.remote.address = "255.255.255.255"
+        model.remote.port = 1234
+        AppData.shared.datas.append(model)
         tableView.reloadData()
     }
     

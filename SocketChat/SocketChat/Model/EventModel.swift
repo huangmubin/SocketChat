@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - Event Model Data Source
+
 extension EventModel {
     
     enum DataSource {
@@ -16,62 +18,112 @@ extension EventModel {
         case remote
     }
     
+    /**
+     文本、十六进制、十进制
+     */
+    enum ShowType {
+        case note
+        case i_16
+        case i_10
+    }
+    
 }
+
+// MARK: - Event Model
 
 class EventModel {
     
-    var isNote: Bool = true
+    ///  事件数据
     var data: [UInt8] = []
-    var note: String = ""
-    func changed() {
-        if isNote {
-            data = note.utf8.map({ return $0 })
-        }
-        else {
-            note = String(cString: data)
+    /// 数据的显示类型
+    var type: EventModel.ShowType = .note
+    ///  数据来源
+    var from: EventModel.DataSource = .system
+    /// 数据重复次数
+    var times: Int = 1
+    /// 设置数据
+    var note: String {
+        set { data = newValue.utf8.map({ return $0 }) }
+        get {
+            switch type {
+            case .note:
+                var text = String(cString: data)
+                if text.characters.count == data.count {
+                    return text
+                }
+                else {
+                    return text[0 ..< data.count]
+                }
+            case .i_16:
+                var text = ""
+                for i in data {
+                    let note = String(format: "%x", i)
+                    if note.characters.count == 2 {
+                        text += "0x\(note)  "
+                    }
+                    else {
+                        text += "0x0\(note)  "
+                    }
+                }
+                return text
+            case .i_10:
+                var text = ""
+                for i in data {
+                    let note = String(format: "%d", i)
+                    if note.characters.count == 2 {
+                        text += "0\(note)  "
+                    }
+                    else if note.characters.count == 1 {
+                        text += "00\(note)  "
+                    }
+                    else {
+                        text += "\(note)  "
+                    }
+                }
+                return text
+            }
         }
     }
     
-    var from: DataSource = DataSource.system
+    ///  格式化数据
+    var toString: String {
+        switch type {
+        case .note:
+            return note
+        case .i_10:
+            var r_note = "["
+            for i in data {
+                r_note += "\(i), "
+            }
+            return r_note + "]"
+        case .i_16:
+            var r_note = "["
+            for i in data {
+                let x = String(format: "%x", i)
+                if x.characters.count == 1 {
+                    r_note += "0x0\(x), "
+                }
+                else {
+                    r_note += "0x\(x), "
+                }
+            }
+            return r_note + "]"
+        }
+    }
+    
+    // MARK: UDP Remote
+    
     var address: String = ""
     var port: Int32 = 0
     
-    func message_ip() -> String {
-        switch from {
-        case .system:
-            return ""
-        default:
-            return "\(address) : \(port)"
-        }
-    }
-    
-    func message_note() -> String {
-        if isNote {
-            return note
-        }
-        else {
-            var s = ""
-            for d in data {
-                s += "\(d),"
-            }
-            if s.characters.count > 1 {
-                s.remove(at: s.index(before: s.endIndex))
-            }
-            return "[\(s)]"
-        }
-    }
-    
-    // MARK: - Init
+    // MARK: Init
     
     init() {
-        note = "Create Socket"
+        note = "Create Socket."
     }
     
-    func copy() -> EventModel {
-        let new = EventModel()
-        new.address = address
-        new.port = port
-        return new
+    init(note: String) {
+        self.note = note
     }
     
 }

@@ -10,366 +10,289 @@ import UIKit
 
 extension Notification.Name {
     static let SocketUpdate = Notification.Name.init("SocketUpdate")
+    static let SocketConnect = Notification.Name.init("SocketConnect")
 }
+
+// MARK: - App Data
 
 class AppData: NotifierProtocol {
     
-    // MARK: - Singleton
-    
+    // 
     static let shared = AppData()
     
-    init() {
+    private init() {
         read()
     }
     
+    /** 持久化保存数据 */
     func save() {
         var values: [[Any]] = []
         for data in datas {
             values.append([
-                data.type.toInt(),
-                data.address,
-                data.port,
-                data.remote?.address ?? "",
-                data.remote?.port ?? 0
+                data.type.rawValue,
+                data.local.address,
+                data.local.port,
+                data.remote.address,
+                data.remote.port
             ])
         }
         UserDefaults.standard.set(values, forKey: "app_datas")
     }
     
+    /** 获取本地保存的数据 */
     func read() {
         if let values = UserDefaults.standard.object(forKey: "app_datas") as? [[Any]] {
             for value in values {
                 let model = SocketModel()
-                model.type = Socket.SocketType(rawValue: value[0] as! Int)!
-                model.address = value[1] as! String
-                model.port = value[2] as! Int32
-                model.remote = Socket()
-                model.remote!.address = value[3] as! String
-                model.remote!.port = value[4] as! Int32
+                model.type = SocketModel.SocketType(rawValue: value[0] as! Int)!
+                model.local.address = value[1] as! String
+                model.local.port = value[2] as! Int32
+                model.remote.address = value[3] as! String
+                model.remote.port = value[4] as! Int32
                 datas.append(model)
             }
         }
     }
     
-    func post() {
-        self.post(name: .SocketUpdate, infos: nil, inQueue: DispatchQueue.main)
+    // MARK: - Post
+    
+    /**  发送更新通知 */
+    func post(flag: Int) {
+        self.post(name: .SocketUpdate, infos: ["flag": flag], inQueue: DispatchQueue.main)
+    }
+    
+    /** 发送连接更新 */
+    func post(connect flag: Int) {
+        self.post(name: .SocketConnect, infos: ["flag": flag], inQueue: DispatchQueue.main)
     }
     
     // MARK: - Values
     
-    var datas: [SocketModel] = [SocketModel]()
-    
+    /// Socket 数据列表
+    var datas: [SocketModel] = []
+    /// 当前正在访问的 Socket 对象
     var current: SocketModel!
     
-    // MARK: - Connect Actions
+    // MARK: - Connect Action
     
+    /** 根据数据类型进行网络连接 */
     func connect() {
         switch current.type {
-        case .tcp_server:
-            tcp_server_connect()
-        case .tcp_client:
-            tcp_client_connect()
-        case .udp_server:
-            udp_server_connect()
-        case .udp_client:
-            udp_client_connect()
+        case .server:
+            server_connect()
+        case .client:
+            client_connect()
+        case .udp:
+            udp_connect()
         }
     }
     
-    func tcp_server_connect() {
+    private func server_connect() {
         DispatchQueue.global().async {
-            let socket = self.current!
-            let bind_event = EventModel()
-            bind_event.address = socket.address
-            bind_event.port = socket.port
+            let model = self.current!
             do {
-                //print("Try to bind the TCP Server.")
-                bind_event.note = "Try to bind the TCP Server."
-                socket.events.append(bind_event)
-                self.post()
-                try socket.tcp_server(port: socket.port)
+                print("Try to bind the TCP Server.")
+                model.append(event: "Try to bind the TCP Server.")
+                self.post(flag: model.flag)
+                try model.local.tcp_server(port: model.local.port)
+                self.post(connect: model.flag)
                 
-                socket.isConnecting = true
+                print("Try to accept the TCP Client.")
+                model.append(event: "Try to accept the TCP Client.")
+                self.post(flag: model.flag)
+                model.remote = try model.local.accept(time: 0)
+                self.post(connect: model.flag)
                 
-                let accept_event = bind_event.copy()
-                accept_event.note = "Try to accept the TCP Client."
-                //print("Try to accept the TCP Client.")
-                socket.events.append(accept_event)
-                self.post()
-                socket.remote = try socket.accept(time: 0)
+                print("Accept the client Success.")
+                model.append(event: "Accept the client Success.")
+                self.post(flag: model.flag)
                 
-                let success_event = bind_event.copy()
-                success_event.note = "Accept the client Success."
-                socket.events.append(success_event)
-                
-                socket.isConnecting = false
-                
-                self.post()
-                
-                self.read_loop(socket: socket)
+                self.read_loop(model)
             } catch {
-                let _ = try? socket.close()
-                socket.socket = nil
-                socket.isConnecting = false
-                
-                let error_event = bind_event.copy()
-                error_event.note = "Error in Socket :  \(error)"
-                //print("Error in Socket :  \(error)")
-                socket.events.append(error_event)
-                self.post()
-            }
-        }
-    }
-    
-    func tcp_client_connect() {
-        DispatchQueue.global().async {
-            let socket = self.current!
-            let connect_event = EventModel()
-            connect_event.address = socket.address
-            connect_event.port = socket.port
-            do {
-                connect_event.note = "Try to connect the TCP Server."
-                socket.events.append(connect_event)
-                self.post()
-                try socket.tcp_client(port: socket.port, address: socket.address)
-                
-                let success_event = connect_event.copy()
-                success_event.note = "Connect the Server Success."
-                socket.events.append(success_event)
-                self.post()
-                
-                self.read_loop(socket: socket)
-            } catch {
-                let error_event = connect_event.copy()
-                error_event.note = "Error in Socket : \(error)"
-                socket.events.append(error_event)
-                self.post()
-            }
-        }
-    }
-    
-    func udp_server_connect() {
-        DispatchQueue.global().async {
-            let socket = self.current!
-            let bind_event = EventModel()
-            bind_event.address = socket.address
-            bind_event.port = socket.port
-            do {
-                bind_event.note = "Try to bind the UDP Server."
-                socket.events.append(bind_event)
-                self.post()
-                try socket.udp_server(port: socket.port)
-                
-                let success_event = bind_event.copy()
-                success_event.note = "Bind the client Success."
-                socket.events.append(success_event)
-                self.post()
-                
-                self.read_loop(socket: socket)
-            } catch {
-                let error_event = bind_event.copy()
-                error_event.note = "Error in Socket :  \(error)"
-                socket.events.append(error_event)
-                self.post()
-            }
-        }
-    }
+                let _ = try? model.local.close()
+                let _ = try? model.remote.close()
+                model.local.socket = nil
+                model.remote.socket = nil
 
-    func udp_client_connect() {
-        DispatchQueue.global().async {
-            let socket = self.current!
-            let create_event = EventModel()
-            create_event.address = socket.address
-            create_event.port = socket.port
-            do {
-                create_event.note = "Try to create the UDP Client."
-                socket.events.append(create_event)
-                self.post()
-                try socket.udp_client()
-                
-                let success_event = create_event.copy()
-                success_event.note = "Connect the Server Success."
-                socket.events.append(success_event)
-                
-                try socket.broadcast(isOpen: true)
-                let opt_event = create_event.copy()
-                opt_event.note = "Open the broadcat Success."
-                socket.events.append(opt_event)
-                
-                self.post()
-            } catch {
-                let error_event = create_event.copy()
-                error_event.note = "Error in Socket : \(error)"
-                socket.events.append(error_event)
-                self.post()
+                print("Error in TCP Server Socket :  \(error)")
+                model.append(event: "Error in Socket :  \(error)")
+                self.post(flag: model.flag)
             }
         }
     }
-
-    // MARK: - Close Action
     
-    func close() {
-        let socket = self.current!
-        let close_event = EventModel()
-        close_event.address = socket.address
-        close_event.port = socket.port
-        
-        do {
-            try socket.remote?.send(text: "EOF!")
-        } catch {
-            // print("Error : (\(socket.id)) is send EOF! error.")
+    private func client_connect() {
+        DispatchQueue.global().async {
+            let model = self.current!
+            do {
+                print("Try to connect the TCP Server.")
+                model.append(event: "Try to connect the TCP Server.")
+                self.post(flag: model.flag)
+                try model.remote.tcp_client(
+                    port: model.remote.port,
+                    address: model.remote.address
+                )
+                self.post(connect: model.flag)
+                
+                model.append(event: "Connect the Server Success.")
+                self.post(flag: model.flag)
+                
+                self.read_loop(model)
+            } catch {
+                print("Error in TCP Client Socket :  \(error)")
+                model.append(event: "Error in Socket :  \(error)")
+                self.post(flag: model.flag)
+            }
         }
-        
-        do {
-            close_event.note = "Try to close the socket."
-            socket.events.append(close_event)
-            try socket.shutdown(.read_write)
-            try socket.close()
-        } catch {
-            let error_event = close_event.copy()
-            error_event.note = "Error in Socket : \(error)"
-            socket.events.append(error_event)
-        }
-        
-        socket.socket = nil
-        socket.isConnecting = false
-        self.post()
     }
     
-    // MARK: - Read Loop
-    
-    func read_loop(socket: SocketModel) {
+    private func udp_connect() {
         DispatchQueue.global().async {
+            let model = self.current!
+            do {
+                print("Try to bind the UDP Server.")
+                model.append(event: "Try to bind the UDP Server.")
+                self.post(flag: model.flag)
+                try model.local.udp_server(port: model.local.port)
+                try model.local.broadcast(isOpen: true)
+                model.remote.address = "255.255.255.255"
+                model.remote.port = model.local.port
+                self.post(connect: model.flag)
+                
+                print("Bind the UDP Server Success.")
+                model.append(event: "Bind the UDP Server Success.")
+                self.post(flag: model.flag)
+                
+                self.read_loop(model)
+            } catch {
+                print("Error in UDP Socket :  \(error)")
+                model.append(event: "Error in Socket :  \(error)")
+                self.post(flag: model.flag)
+            }
+        }
+    }
+    
+    // MARK: Read Loop
+    
+    /** 循环对 Socket 进行数据读取 */
+    func read_loop(_ socketModel: SocketModel) {
+        DispatchQueue.global().async {
+            let model = socketModel
             while true {
-                if socket.socket == nil {
-                    return
-                }
-                let event = socket.event()
-                event.from = .remote
                 do {
-                    switch socket.type {
-                    case .tcp_server:
-                        if let remote = socket.remote {
-                            let data = try remote.recv(byte_length: 1024)
-                            if data.count > 0 {
-                                event.address = remote.address
-                                event.port = remote.port
-                                event.data = data
-                                event.note = String(cString: data)
-                            }
-                            else {
-                                event.note = "Error in socket and close."
-                                event.from = .system
-                                let _ = try? socket.remote?.close()
-                                let _ = try? socket.close()
-                                socket.remote = nil
-                                socket.socket = nil
-                            }
-                            socket.events.append(event)
-                            self.post()
+                    switch model.type {
+                    case .server:
+                        if model.remote.socket == nil || model.local.socket == nil {
+                            print("Error in read loop: TCP Server \(model.flag) is nil")
+                            return
                         }
-                    case .tcp_client:
-                        let data = try socket.recv(byte_length: 1024)
-                        event.data = data
-                        event.note = String(cString: data)
-                        socket.events.append(event)
-                        //print(event.note)
-                        self.post()
-                    case .udp_server:
-                        let infos = try socket.recvfrom(byte_length: 1024)
-                        event.data = infos.0
-                        event.note = String(cString: infos.0)
-                        socket.remote?.address = infos.1
-                        socket.remote?.port = infos.2
-                        socket.events.append(event)
-                        self.post()
-                    case .udp_client:
-                        break
+                        
+                        let data = try model.remote.recv(byte_length: 1024)
+                        if data.count == 0 {
+                            print("Error in TCP Server remote is close.")
+                            model.append(event: "Error in TCP Server remote is close.")
+                            self.post(flag: model.flag)
+                        }
+                        else {
+                            model.append(remote_event: data)
+                            self.post(flag: model.flag)
+                        }
+                    case .client:
+                        if model.remote.socket == nil {
+                            print("Error in read loop: TCP Client \(model.flag) is nil")
+                            return
+                        }
+                        
+                        let data = try model.remote.recv(byte_length: 1024)
+                        //[69, 79, 70, 33] EOF!
+                        if data.elementsEqual([69, 79, 70, 33]) {
+                            model.append(event: "TCP Server is close the connect.")
+                            self.post(flag: model.flag)
+                        }
+                        else {
+                            model.append(remote_event: data)
+                            self.post(flag: model.flag)
+                        }
+                    case .udp:
+                        if model.local.socket == nil {
+                            print("Error in read loop: UDP Server \(model.flag) is nil")
+                            return
+                        }
+                        print("recvfrom start")
+                        let infos = try model.local.recvfrom(byte_length: 1024, time: 10)
+                        if infos.1 != model.local.address {
+                            model.append(
+                                remote_event: infos.0,
+                                address: infos.1,
+                                port: infos.2
+                            )
+                            self.post(flag: model.flag)
+                        }
+                        print("recvfrom end \(infos.1)")
                     }
                 } catch {
-                    // print("Error: -(\(socket.id)) \(error.localizedDescription); \(error)")
-                    if "\(error)" == "read" {
-                        let _ = try? socket.close()
-                        event.note = "Error in socket and close."
-                        event.from = .system
-                        socket.events.append(event)
-                        socket.socket = nil
-                        return
-                    }
+                    // TODO: Error
+                    print("Error in read loop - flag: \(model.flag); type: \(model.type.hashValue); error: \(error); \(error.localizedDescription)")
+//                    model.append(event: "Error in socket read loop.")
+//                    self.post(flag: model.flag)
+//                    
+//                    let _ = try? model.local.close()
+//                    let _ = try? model.remote.close()
+//                    model.local.socket = nil
+//                    model.remote.socket = nil
                 }
-                
-                print("Read : (\(socket.id)) read \(String(describing: socket.events.last?.note)); \(String(describing: socket.events.last?.data))")
-                
-                if event.data == [69, 79, 70, 33] {
-                    let _ = try? socket.close()
-                    socket.socket = nil
-                }
-                Thread.sleep(forTimeInterval: 0.1)
             }
         }
+    }
+    
+    // MARK: - Close
+    
+    /** 关闭 Socket 连接 */
+    func close () {
+        let model = self.current!
+        if model.type == .server {
+            let _ = try? model.remote.send(byte: [69, 79, 70, 33])
+        }
+        
+        let _ = try? model.local.close()
+        let _ = try? model.remote.close()
+        model.local.socket = nil
+        model.remote.socket = nil
+        
+        model.append(event: "Socket is close.")
+        self.post(flag: model.flag)
+        self.post(connect: model.flag)
     }
     
     // MARK: - Send
     
-    func send(text: String) {
+    /** 发送数据 */
+    func send(bytes: [UInt8]) {
         DispatchQueue.global().async {
-            let socket = self.current!
-            let event = socket.event()
-            event.from = .local
-            
+            let model = self.current!
             do {
-                switch socket.type {
-                case .tcp_server:
-                    try socket.remote?.send(text: text)
-                case .tcp_client:
-                    try socket.send(text: text)
-                case .udp_server, .udp_client:
-                    try socket.sendto(
-                        text: text,
-                        address: socket.remote?.address,
-                        port: socket.remote?.port,
-                        time: 0
+                switch model.type {
+                case .server, .client:
+                    try model.remote.send(byte: bytes)
+                    model.append(local_event: bytes)
+                case .udp:
+                    try model.local.sendto(
+                        byte: bytes,
+                        address: model.remote.address,
+                        port: model.remote.port
                     )
+                    model.append(local_event: bytes, port: model.remote.port)
                 }
-                event.note = text
             } catch {
-                event.note = "Error in Send: \(text)"
+                //[69, 114, 114, 111, 114, 58, 32]
+                model.append(local_event: [69, 114, 114, 111, 114, 58, 32] + bytes)
             }
-            
-            socket.events.append(event)
-            self.post()
+            self.post(flag: model.flag)
         }
     }
     
-    func send(bytes: [UInt8]) {
-        DispatchQueue.global().async {
-            let socket = self.current!
-            let event = socket.event()
-            event.from = .local
-            
-            do {
-                switch socket.type {
-                case .tcp_server:
-                    try socket.remote?.send(byte: bytes)
-                case .tcp_client:
-                    try socket.send(byte: bytes)
-                case .udp_server, .udp_client:
-                    try socket.sendto(
-                        byte: bytes,
-                        address: socket.remote?.address,
-                        port: socket.remote?.port,
-                        time: 0
-                    )
-                }
-                event.isNote = false
-                event.data = bytes
-            } catch {
-                event.isNote = true
-                event.note = "Error in Send: \(bytes)"
-            }
-            
-            socket.events.append(event)
-            self.post()
-        }
+    /** 发送数据 */
+    func send(text: String) {
+        send(bytes: text.utf8.map({ return $0 }))
     }
 }

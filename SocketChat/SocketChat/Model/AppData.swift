@@ -153,6 +153,7 @@ class AppData: NotifierProtocol {
                 print("Try to bind the UDP Server.")
                 model.append(event: "Try to bind the UDP Server.")
                 self.post(flag: model.flag)
+                print("port = \(model.local.port)")
                 try model.local.udp_server(port: model.local.port)
                 try model.local.broadcast(isOpen: true)
                 model.remote.address = "255.255.255.255"
@@ -218,8 +219,8 @@ class AppData: NotifierProtocol {
                             print("Error in read loop: UDP Server \(model.flag) is nil")
                             return
                         }
-                        print("recvfrom start")
-                        let infos = try model.local.recvfrom(byte_length: 1024, time: 10)
+                        //print("recvfrom start")
+                        let infos = try model.local.recvfrom(byte_length: 1024)
                         if infos.1 != model.local.address {
                             model.append(
                                 remote_event: infos.0,
@@ -228,18 +229,18 @@ class AppData: NotifierProtocol {
                             )
                             self.post(flag: model.flag)
                         }
-                        print("recvfrom end \(infos.1)")
+                        //print("recvfrom end \(infos.1)")
                     }
                 } catch {
                     // TODO: Error
                     print("Error in read loop - flag: \(model.flag); type: \(model.type.hashValue); error: \(error); \(error.localizedDescription)")
-//                    model.append(event: "Error in socket read loop.")
-//                    self.post(flag: model.flag)
-//                    
-//                    let _ = try? model.local.close()
-//                    let _ = try? model.remote.close()
-//                    model.local.socket = nil
-//                    model.remote.socket = nil
+                    model.append(event: "Error in socket read loop.")
+                    self.post(flag: model.flag)
+                    
+                    let _ = try? model.local.close()
+                    let _ = try? model.remote.close()
+                    model.local.socket = nil
+                    model.remote.socket = nil
                 }
             }
         }

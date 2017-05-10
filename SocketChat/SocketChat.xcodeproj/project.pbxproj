@@ -174,11 +174,11 @@
 		9CC383D91EAAD8E900C406A0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9CCFD1221EBF15480026B96B /* MessageEditView.swift */,
+				9CCFD11E1EBE0BB90026B96B /* SocketInfoView.swift */,
 				9CCFD1201EBEABBC0026B96B /* AddressInputView.swift */,
+				9CCFD1221EBF15480026B96B /* MessageEditView.swift */,
 				9C0B2FB71EAAE8C80030AB3B /* ListCell.swift */,
 				9C0B2FB91EAAE8DD0030AB3B /* ChatCell.swift */,
-				9CCFD11E1EBE0BB90026B96B /* SocketInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

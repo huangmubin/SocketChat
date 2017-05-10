@@ -30,6 +30,7 @@ class ChatController: UIViewController,
         
         layout_ready_to_connect(false)
         
+        // Update the views
         if socket_info_view.update(model: model) {
             layout_ready_to_connect(true)
         }

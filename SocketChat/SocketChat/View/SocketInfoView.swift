@@ -38,6 +38,15 @@ class SocketInfoView: UIView {
     
     @discardableResult
     func update(model: SocketModel) -> Bool {
+        // Update title
+        update(
+            local_addr: model.local.address,
+            local_port: model.local.port.description,
+            remote_addr: model.remote.address,
+            remote_port: model.remote.port.description
+        )
+        
+        // Update Views
         switch model.type {
         case .server:
             update(type_image: 0)
@@ -171,6 +180,13 @@ class SocketInfoView: UIView {
             remote_addr.isEnabled = true
             remote_port.isEnabled = true
         }
+    }
+    
+    func update(local_addr: String, local_port: String, remote_addr: String, remote_port: String) {
+        self.local_addr.setTitle(local_addr, for: .normal)
+        self.local_port.setTitle(local_port, for: .normal)
+        self.remote_addr.setTitle(remote_addr, for: .normal)
+        self.remote_port.setTitle(remote_port, for: .normal)
     }
     
     // MARK: - Status Button

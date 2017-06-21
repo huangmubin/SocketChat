@@ -229,7 +229,7 @@ class AppData: NotifierProtocol {
                             )
                             self.post(flag: model.flag)
                         }
-                        //print("recvfrom end \(infos.1)")
+                        //rint("recvfrom end \(infos.1)")
                     }
                 } catch {
                     // TODO: Error
